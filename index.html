@@ -64,6 +64,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-树莓派折腾笔记-没有WiFi和显示器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0-%E6%B2%A1%E6%9C%89WiFi%E5%92%8C%E6%98%BE%E7%A4%BA%E5%99%A8/" class="article-date">
+  <time datetime="2020-12-08T02:14:52.000Z" itemprop="datePublished">2020-12-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0-%E6%B2%A1%E6%9C%89WiFi%E5%92%8C%E6%98%BE%E7%A4%BA%E5%99%A8/">树莓派折腾笔记:没有WiFi和显示器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇同样是在简书上写的，现在也放到这。</p>
+<p>过年放假在家无聊，又赶上疫情回京后自我隔离14天才能上班，无聊买了个树莓派4学习下，单手发现个问题新版的树莓派是microHDMI手里没有转接头，看了网上教程可以远程使用vnc连接。</p>
+<p>　　那就准备开搞，首先说下我目前的情况，因为被迫隔离在出租房中，没有WiFi和电脑，只有个手机，不限流量。有个内存卡，没有读卡器，感觉我这次有的折腾。</p>
+<pre><code>    *  第一步需要在内存卡上写入下载好的系统镜像，从这里下的[连接](https://gitee.com/openfans-community/Debian-Pi-Aarch64/blob/master/update.md)。这个系统有个好处，已经设置好了vnc和网页管理界面和网页的ssh界面，前期很方便。但是目前我手里没有读卡器没有电脑，不能写入镜像。赶紧放狗搜，发现一个软件EtchDroid ![etchdroid](http://upload-images.jianshu.io/upload_images/19975038-4d60fadf6cc32f14.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)这个软件可以把系统镜像写入到内存卡，不过还有个问题没有读卡器，手里倒是有个typc-c的扩展坞。这就没办法了，赶紧翻箱倒柜找了一通，发现个山狗SJ4000，鬼知道我当初买它干嘛的，赶紧试下，发现这东西啊在关机状态下插入手机扩展坞的USB口竟然能识别，还可以选择存储器还是摄像头，这玩意可以当读卡器用。赶紧插好用手机把下载好的系统镜像写进TF卡，搞定。
+    * 第二步联网访问设备，我这没有无线怎么弄？再想想办法，用手机开热点？倒是可行，不过我没有显示器怎么把树莓派连到手机？赶紧 又翻了下系统教程，发现这东西是可以在存储卡上设置联网设备的名称和密码的。赶紧插好我的扩展坞和“ 读卡器”手机打开MT管理器在boot分区打开无线配置文件（ 上面连接有详细教程）![无线](http://upload-images.jianshu.io/upload_images/19975038-b9c6577a5a59e8e6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)输入热点名称和密码，然后内存卡插好，板子上电，漫长的等待后，手机热点的已连接设备里终于出现了树莓派的名字，搞定。
+    * 第三步具体使用，由于买的hdmi线还没到这里就只能用手机连接了，这里用到两个软件VNC Viewer和JuiceSSH分别是用来远程桌面和SSH的具体步骤很简单，我就偷个懒，毕竟手机码字，条件有限。
+    * 另外的注意事项iOS怎么办？VNC Viewer也有ios版的，至于SSH软件推荐一款Pihelper，也带SSH功能。至于写镜像的软件，我没找到iOS版。
+    *  再加个注意事项，因为我下载的系统下下来是个压缩包需要解压出来，再推荐个软件，Zarchiver安卓解压缩软件功能挺强大。
+    * 既然说到解压缩，我再多具嘴，解压缩的时候如果你的内存卡格式是Fat32的话，是没法解压超过4 GB的文件的。</code></pre>
+<p>至于还有没有下一篇，再说吧。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0-%E6%B2%A1%E6%9C%89WiFi%E5%92%8C%E6%98%BE%E7%A4%BA%E5%99%A8/" data-id="ckifd6tt50002bktd2t7heja7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8E%86%E5%8F%B2%E9%81%97%E8%BF%B9/" rel="tag">历史遗迹</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-软路由折腾笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/08/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" class="article-date">
@@ -121,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/08/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" data-id="ckifci6750003sgtdbup5cief" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/08/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" data-id="ckifd6tta0005bktd01sr6hsd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8E%86%E5%8F%B2%E9%81%97%E8%BF%B9/" rel="tag">历史遗迹</a></li></ul>
@@ -168,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/03/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" data-id="ckifci6740002sgtdek4s7v82" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/03/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" data-id="ckifd6tt30001bktddsbr0luv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%99%E6%80%81/" rel="tag">静态</a></li></ul>
@@ -206,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/03/firstBlog/" data-id="ckifci66w0000sgtdbdcs8te9" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/03/firstBlog/" data-id="ckifd6tsx0000bktd3io87pl6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -255,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/03/hello-world/" data-id="ckifci6710001sgtdfhijacw7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/03/hello-world/" data-id="ckifd6tt80004bktd6o246e1e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -288,7 +336,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/%E5%8E%86%E5%8F%B2%E9%81%97%E8%BF%B9/" style="font-size: 10px;">历史遗迹</a> <a href="/tags/%E9%9D%99%E6%80%81/" style="font-size: 10px;">静态</a>
+      <a href="/tags/%E5%8E%86%E5%8F%B2%E9%81%97%E8%BF%B9/" style="font-size: 20px;">历史遗迹</a> <a href="/tags/%E9%9D%99%E6%80%81/" style="font-size: 10px;">静态</a>
     </div>
   </div>
 
@@ -308,6 +356,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/12/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0-%E6%B2%A1%E6%9C%89WiFi%E5%92%8C%E6%98%BE%E7%A4%BA%E5%99%A8/">树莓派折腾笔记:没有WiFi和显示器</a>
+          </li>
         
           <li>
             <a href="/2020/12/08/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/">软路由折腾笔记</a>
