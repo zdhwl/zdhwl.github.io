@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="自留地">
 <meta property="og:description" content="这篇同样是在简书上写的，现在也放到这。 过年放假在家无聊，又赶上疫情回京后自我隔离14天才能上班，无聊买了个树莓派4学习下，单手发现个问题新版的树莓派是microHDMI手里没有转接头，看了网上教程可以远程使用vnc连接。 　　那就准备开搞，首先说下我目前的情况，因为被迫隔离在出租房中，没有WiFi和电脑，只有个手机，不限流量。有个内存卡，没有读卡器，感觉我这次有的折腾。 第一步">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/19975038-4d60fadf6cc32f14.jpg">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/19975038-b9c6577a5a59e8e6.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-4d60fadf6cc32f14.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-b9c6577a5a59e8e6.jpg">
 <meta property="article:published_time" content="2020-12-08T02:14:52.000Z">
-<meta property="article:modified_time" content="2020-12-09T03:40:16.878Z">
+<meta property="article:modified_time" content="2020-12-09T05:43:23.901Z">
 <meta property="article:author" content="Zhenyu Xing">
 <meta property="article:tag" content="历史遗迹">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/19975038-4d60fadf6cc32f14.jpg">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-4d60fadf6cc32f14.jpg">
 
 <link rel="canonical" href="http://example.com/2020/12/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0-%E6%B2%A1%E6%9C%89WiFi%E5%92%8C%E6%98%BE%E7%A4%BA%E5%99%A8/">
 
@@ -185,7 +185,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-09 11:40:16" itemprop="dateModified" datetime="2020-12-09T11:40:16+08:00">2020-12-09</time>
+                <time title="修改时间：2020-12-09 13:43:23" itemprop="dateModified" datetime="2020-12-09T13:43:23+08:00">2020-12-09</time>
               </span>
 
           
@@ -216,8 +216,8 @@
         <p>这篇同样是在简书上写的，现在也放到这。</p>
 <p>过年放假在家无聊，又赶上疫情回京后自我隔离14天才能上班，无聊买了个树莓派4学习下，单手发现个问题新版的树莓派是microHDMI手里没有转接头，看了网上教程可以远程使用vnc连接。</p>
 <p>　　那就准备开搞，首先说下我目前的情况，因为被迫隔离在出租房中，没有WiFi和电脑，只有个手机，不限流量。有个内存卡，没有读卡器，感觉我这次有的折腾。</p>
-<h6 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h6><p>需要在内存卡上写入下载好的系统镜像，从这里下的<a target="_blank" rel="noopener" href="https://gitee.com/openfans-community/Debian-Pi-Aarch64/blob/master/update.md">连接</a>。这个系统有个好处，已经设置好了vnc和网页管理界面和网页的ssh界面，前期很方便。但是目前我手里没有读卡器没有电脑，不能写入镜像。赶紧放狗搜，发现一个软件EtchDroid <img src="http://upload-images.jianshu.io/upload_images/19975038-4d60fadf6cc32f14.jpg" alt="etchdroid">这个软件可以把系统镜像写入到内存卡，不过还有个问题没有读卡器，手里倒是有个typc-c的扩展坞。这就没办法了，赶紧翻箱倒柜找了一通，发现个山狗SJ4000，鬼知道我当初买它干嘛的，赶紧试下，发现这东西啊在关机状态下插入手机扩展坞的USB口竟然能识别，还可以选择存储器还是摄像头，这玩意可以当读卡器用。赶紧插好用手机把下载好的系统镜像写进TF卡，搞定。</p>
-<h6 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h6><p>联网访问设备，我这没有无线怎么弄？再想想办法，用手机开热点？倒是可行，不过我没有显示器怎么把树莓派连到手机？赶紧 又翻了下系统教程，发现这东西是可以在存储卡上设置联网设备的名称和密码的。赶紧插好我的扩展坞和“ 读卡器”手机打开MT管理器在boot分区打开无线配置文件（ 上面连接有详细教程）<img src="http://upload-images.jianshu.io/upload_images/19975038-b9c6577a5a59e8e6.jpg" alt="无线" style="zoom:80%;" />输入热点名称和密码，然后内存卡插好，板子上电，漫长的等待后，手机热点的已连接设备里终于出现了树莓派的名字，搞定。</p>
+<h6 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h6><p>需要在内存卡上写入下载好的系统镜像，从这里下的<a target="_blank" rel="noopener" href="https://gitee.com/openfans-community/Debian-Pi-Aarch64/blob/master/update.md">连接</a>。这个系统有个好处，已经设置好了vnc和网页管理界面和网页的ssh界面，前期很方便。但是目前我手里没有读卡器没有电脑，不能写入镜像。赶紧放狗搜，发现一个软件EtchDroid <img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-4d60fadf6cc32f14.jpg" alt="etchdroid">)这个软件可以把系统镜像写入到内存卡，不过还有个问题没有读卡器，手里倒是有个typc-c的扩展坞。这就没办法了，赶紧翻箱倒柜找了一通，发现个山狗SJ4000，鬼知道我当初买它干嘛的，赶紧试下，发现这东西啊在关机状态下插入手机扩展坞的USB口竟然能识别，还可以选择存储器还是摄像头，这玩意可以当读卡器用。赶紧插好用手机把下载好的系统镜像写进TF卡，搞定。</p>
+<h6 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h6><p>联网访问设备，我这没有无线怎么弄？再想想办法，用手机开热点？倒是可行，不过我没有显示器怎么把树莓派连到手机？赶紧 又翻了下系统教程，发现这东西是可以在存储卡上设置联网设备的名称和密码的。赶紧插好我的扩展坞和“ 读卡器”手机打开MT管理器在boot分区打开无线配置文件（ 上面连接有详细教程）<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-b9c6577a5a59e8e6.jpg" alt="mt">输入热点名称和密码，然后内存卡插好，板子上电，漫长的等待后，手机热点的已连接设备里终于出现了树莓派的名字，搞定。</p>
 <h6 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h6><p>具体使用，由于买的hdmi线还没到这里就只能用手机连接了，这里用到两个软件VNC Viewer和JuiceSSH分别是用来远程桌面和SSH的具体步骤很简单，我就偷个懒，毕竟手机码字，条件有限。</p>
 <h6 id="另外的注意事项"><a href="#另外的注意事项" class="headerlink" title="另外的注意事项"></a>另外的注意事项</h6><p>iOS怎么办？VNC Viewer也有ios版的，至于SSH软件推荐一款Pihelper，也带SSH功能。至于写镜像的软件，我没找到iOS版。</p>
 <h6 id="再加个注意事项"><a href="#再加个注意事项" class="headerlink" title="再加个注意事项"></a>再加个注意事项</h6><p>因为我下载的系统下下来是个压缩包需要解压出来，再推荐个软件，Zarchiver安卓解压缩软件功能挺强大。</p>
