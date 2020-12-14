@@ -20,23 +20,30 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="这篇同样是在简书上写的，现在也放到这。 过年放假在家无聊，又赶上疫情回京后自我隔离14天才能上班，无聊买了个树莓派4学习下，单手发现个问题新版的树莓派是microHDMI手里没有转接头，看了网上教程可以远程使用vnc连接。 　　那就准备开搞，首先说下我目前的情况，因为被迫隔离在出租房中，没有WiFi和电脑，只有个手机，不限流量。有个内存卡，没有读卡器，感觉我这次有的折腾。 第一步">
+  <meta name="description" content="玩黑群晖的人比UNRAID多的多，各种教程也多，黑群晖还有一个好处是可以洗白，任期内后用免费的QC实现内网穿透，不过黑群晖使用QC问题比较多，还容易封号，其实docker也可以实现，网上搜到的教程最多的是zerotier，操作简单，就是速度不太稳定，毕竟中转服务器在国外，当然也可以自己搭建moon服务，不过这个可能要花一点小钱，不在我的考虑范围，今天就介绍一种免费的方式。 蒲公英 简单的理解就是组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="树莓派折腾笔记:没有WiFi和显示器">
-<meta property="og:url" content="http://example.com/2020/12/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0-%E6%B2%A1%E6%9C%89WiFi%E5%92%8C%E6%98%BE%E7%A4%BA%E5%99%A8/index.html">
+<meta property="og:title" content="Unraid部署docker系列（三）部署蒲公英实现内网穿透">
+<meta property="og:url" content="http://example.com/2020/12/14/Unraid%E9%83%A8%E7%BD%B2docker%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%E9%83%A8%E7%BD%B2%E8%92%B2%E5%85%AC%E8%8B%B1%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/index.html">
 <meta property="og:site_name" content="自留地">
-<meta property="og:description" content="这篇同样是在简书上写的，现在也放到这。 过年放假在家无聊，又赶上疫情回京后自我隔离14天才能上班，无聊买了个树莓派4学习下，单手发现个问题新版的树莓派是microHDMI手里没有转接头，看了网上教程可以远程使用vnc连接。 　　那就准备开搞，首先说下我目前的情况，因为被迫隔离在出租房中，没有WiFi和电脑，只有个手机，不限流量。有个内存卡，没有读卡器，感觉我这次有的折腾。 第一步">
+<meta property="og:description" content="玩黑群晖的人比UNRAID多的多，各种教程也多，黑群晖还有一个好处是可以洗白，任期内后用免费的QC实现内网穿透，不过黑群晖使用QC问题比较多，还容易封号，其实docker也可以实现，网上搜到的教程最多的是zerotier，操作简单，就是速度不太稳定，毕竟中转服务器在国外，当然也可以自己搭建moon服务，不过这个可能要花一点小钱，不在我的考虑范围，今天就介绍一种免费的方式。 蒲公英 简单的理解就是组">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-4d60fadf6cc32f14.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-b9c6577a5a59e8e6.jpg">
-<meta property="article:published_time" content="2020-12-08T02:14:52.000Z">
-<meta property="article:modified_time" content="2020-12-09T05:43:23.901Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/%E8%92%B2%E5%85%AC%E8%8B%B1SD-WAN-%E6%99%BA%E8%83%BD%E7%BB%84%E7%BD%91-%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91-4G%E5%B7%A5%E4%B8%9A%E8%B7%AF%E7%94%B1%E5%99%A8-%E7%A7%BB%E5%8A%A8%E5%8A%9E%E5%85%AC-%E4%BC%81%E4%B8%9A%E5%8D%8F%E5%90%8C%E5%8A%9E%E5%85%AC-%E8%BF%9C%E7%A8%8B%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7-oray%E8%B4%9D%E9%94%90%E7%A7%91%E6%8A%80%E8%92%B2%E5%85%AC%E8%8B%B1%E5%AE%98%E7%BD%91.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/Tower-Dashboard%20(1).png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/msedge_kkEOb5X5z8.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/Tower-Docker%20(2).png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201215000948.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201215002024.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/msedge_5v0ApV3hph.png">
+<meta property="article:published_time" content="2020-12-14T15:26:21.000Z">
+<meta property="article:modified_time" content="2020-12-14T16:37:52.869Z">
 <meta property="article:author" content="Zhenyu Xing">
-<meta property="article:tag" content="历史遗迹">
+<meta property="article:tag" content="UNRAID">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="内网穿透">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-4d60fadf6cc32f14.jpg">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/%E8%92%B2%E5%85%AC%E8%8B%B1SD-WAN-%E6%99%BA%E8%83%BD%E7%BB%84%E7%BD%91-%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91-4G%E5%B7%A5%E4%B8%9A%E8%B7%AF%E7%94%B1%E5%99%A8-%E7%A7%BB%E5%8A%A8%E5%8A%9E%E5%85%AC-%E4%BC%81%E4%B8%9A%E5%8D%8F%E5%90%8C%E5%8A%9E%E5%85%AC-%E8%BF%9C%E7%A8%8B%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7-oray%E8%B4%9D%E9%94%90%E7%A7%91%E6%8A%80%E8%92%B2%E5%85%AC%E8%8B%B1%E5%AE%98%E7%BD%91.png">
 
-<link rel="canonical" href="http://example.com/2020/12/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0-%E6%B2%A1%E6%9C%89WiFi%E5%92%8C%E6%98%BE%E7%A4%BA%E5%99%A8/">
+<link rel="canonical" href="http://example.com/2020/12/14/Unraid%E9%83%A8%E7%BD%B2docker%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%E9%83%A8%E7%BD%B2%E8%92%B2%E5%85%AC%E8%8B%B1%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">
 
 
 <script id="page-configurations">
@@ -49,7 +56,7 @@
   };
 </script>
 
-  <title>树莓派折腾笔记:没有WiFi和显示器 | 自留地</title>
+  <title>Unraid部署docker系列（三）部署蒲公英实现内网穿透 | 自留地</title>
   
 
 
@@ -155,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0-%E6%B2%A1%E6%9C%89WiFi%E5%92%8C%E6%98%BE%E7%A4%BA%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/14/Unraid%E9%83%A8%E7%BD%B2docker%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%E9%83%A8%E7%BD%B2%E8%92%B2%E5%85%AC%E8%8B%B1%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -168,7 +175,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          树莓派折腾笔记:没有WiFi和显示器
+          Unraid部署docker系列（三）部署蒲公英实现内网穿透
         </h1>
 
         <div class="post-meta">
@@ -178,14 +185,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-12-08 10:14:52" itemprop="dateCreated datePublished" datetime="2020-12-08T10:14:52+08:00">2020-12-08</time>
+              <time title="创建时间：2020-12-14 23:26:21" itemprop="dateCreated datePublished" datetime="2020-12-14T23:26:21+08:00">2020-12-14</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-09 13:43:23" itemprop="dateModified" datetime="2020-12-09T13:43:23+08:00">2020-12-09</time>
+                <time title="修改时间：2020-12-15 00:37:52" itemprop="dateModified" datetime="2020-12-15T00:37:52+08:00">2020-12-15</time>
               </span>
 
           
@@ -197,8 +204,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0-%E6%B2%A1%E6%9C%89WiFi%E5%92%8C%E6%98%BE%E7%A4%BA%E5%99%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/08/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0-%E6%B2%A1%E6%9C%89WiFi%E5%92%8C%E6%98%BE%E7%A4%BA%E5%99%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/12/14/Unraid%E9%83%A8%E7%BD%B2docker%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%E9%83%A8%E7%BD%B2%E8%92%B2%E5%85%AC%E8%8B%B1%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/14/Unraid%E9%83%A8%E7%BD%B2docker%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%E9%83%A8%E7%BD%B2%E8%92%B2%E5%85%AC%E8%8B%B1%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -213,16 +220,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>这篇同样是在简书上写的，现在也放到这。</p>
-<p>过年放假在家无聊，又赶上疫情回京后自我隔离14天才能上班，无聊买了个树莓派4学习下，单手发现个问题新版的树莓派是microHDMI手里没有转接头，看了网上教程可以远程使用vnc连接。</p>
-<p>　　那就准备开搞，首先说下我目前的情况，因为被迫隔离在出租房中，没有WiFi和电脑，只有个手机，不限流量。有个内存卡，没有读卡器，感觉我这次有的折腾。</p>
-<h6 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h6><p>需要在内存卡上写入下载好的系统镜像，从这里下的<a target="_blank" rel="noopener" href="https://gitee.com/openfans-community/Debian-Pi-Aarch64/blob/master/update.md">连接</a>。这个系统有个好处，已经设置好了vnc和网页管理界面和网页的ssh界面，前期很方便。但是目前我手里没有读卡器没有电脑，不能写入镜像。赶紧放狗搜，发现一个软件EtchDroid <img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-4d60fadf6cc32f14.jpg" alt="etchdroid">)这个软件可以把系统镜像写入到内存卡，不过还有个问题没有读卡器，手里倒是有个typc-c的扩展坞。这就没办法了，赶紧翻箱倒柜找了一通，发现个山狗SJ4000，鬼知道我当初买它干嘛的，赶紧试下，发现这东西啊在关机状态下插入手机扩展坞的USB口竟然能识别，还可以选择存储器还是摄像头，这玩意可以当读卡器用。赶紧插好用手机把下载好的系统镜像写进TF卡，搞定。</p>
-<h6 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h6><p>联网访问设备，我这没有无线怎么弄？再想想办法，用手机开热点？倒是可行，不过我没有显示器怎么把树莓派连到手机？赶紧 又翻了下系统教程，发现这东西是可以在存储卡上设置联网设备的名称和密码的。赶紧插好我的扩展坞和“ 读卡器”手机打开MT管理器在boot分区打开无线配置文件（ 上面连接有详细教程）<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-b9c6577a5a59e8e6.jpg" alt="mt">输入热点名称和密码，然后内存卡插好，板子上电，漫长的等待后，手机热点的已连接设备里终于出现了树莓派的名字，搞定。</p>
-<h6 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h6><p>具体使用，由于买的hdmi线还没到这里就只能用手机连接了，这里用到两个软件VNC Viewer和JuiceSSH分别是用来远程桌面和SSH的具体步骤很简单，我就偷个懒，毕竟手机码字，条件有限。</p>
-<h6 id="另外的注意事项"><a href="#另外的注意事项" class="headerlink" title="另外的注意事项"></a>另外的注意事项</h6><p>iOS怎么办？VNC Viewer也有ios版的，至于SSH软件推荐一款Pihelper，也带SSH功能。至于写镜像的软件，我没找到iOS版。</p>
-<h6 id="再加个注意事项"><a href="#再加个注意事项" class="headerlink" title="再加个注意事项"></a>再加个注意事项</h6><p>因为我下载的系统下下来是个压缩包需要解压出来，再推荐个软件，Zarchiver安卓解压缩软件功能挺强大。</p>
-<p>既然说到解压缩，我再多具嘴，解压缩的时候如果你的内存卡格式是Fat32的话，是没法解压超过4 GB的文件的。</p>
-<p>至于还有没有下一篇，再说吧。</p>
+        <p>玩黑群晖的人比UNRAID多的多，各种教程也多，黑群晖还有一个好处是可以洗白，任期内后用免费的QC实现内网穿透，不过黑群晖使用QC问题比较多，还容易封号，其实docker也可以实现，网上搜到的教程最多的是zerotier，操作简单，就是速度不太稳定，毕竟中转服务器在国外，当然也可以自己搭建moon服务，不过这个可能要花一点小钱，不在我的考虑范围，今天就介绍一种免费的方式。</p>
+<h4 id="蒲公英"><a href="#蒲公英" class="headerlink" title="蒲公英"></a>蒲公英</h4><p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/%E8%92%B2%E5%85%AC%E8%8B%B1SD-WAN-%E6%99%BA%E8%83%BD%E7%BB%84%E7%BD%91-%E5%BC%82%E5%9C%B0%E7%BB%84%E7%BD%91-4G%E5%B7%A5%E4%B8%9A%E8%B7%AF%E7%94%B1%E5%99%A8-%E7%A7%BB%E5%8A%A8%E5%8A%9E%E5%85%AC-%E4%BC%81%E4%B8%9A%E5%8D%8F%E5%90%8C%E5%8A%9E%E5%85%AC-%E8%BF%9C%E7%A8%8B%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7-oray%E8%B4%9D%E9%94%90%E7%A7%91%E6%8A%80%E8%92%B2%E5%85%AC%E8%8B%B1%E5%AE%98%E7%BD%91.png" alt="pgy"></p>
+<p>简单的理解就是组件虚拟局域网(VPN)，别多想，就是字面的意思几个设备组成虚拟局域网，可以直接互相访问。</p>
+<p>之前就有关注这个产品毕竟是贝锐出的，就是花生壳那个公司，最早装监控如果要远程访问都要花生壳的，少说废话，之前的蒲公英只有硬件和windows还有手机版，最近更新了树莓派和Docker版，而且有详细的搭建教程，树莓派先不管它，放一下Docker版的教程</p>
+<h4 id="UNRAID设置"><a href="#UNRAID设置" class="headerlink" title="UNRAID设置"></a>UNRAID设置</h4><p>下面具体说说在UNRAID下怎么操作；</p>
+<p><em>ps：被人说UNRAID步骤复杂，今天写个简单的</em></p>
+<p>打开UNRAID命令行界面<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/Tower-Dashboard%20(1).png" alt="pgy1"></p>
+<p>点开输入教程中的命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --net host --cap-add NET_ADMIN --env PGY_USERNAME&#x3D;&quot;xxx&quot; --env PGY_PASSWORD&#x3D;&quot;xxx&quot; bestoray&#x2F;pgyvpn</span><br></pre></td></tr></table></figure>
+
+<p>上面的USERNAME和PASSWORD是你要提前在蒲公英官网上注册好的账号和密码，不要简单的复制粘贴xxx</p>
+<p>贴入此界面<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/msedge_kkEOb5X5z8.png" alt="pgy2"></p>
+<p>完成后会在docker界面出现一个新程序</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/Tower-Docker%20(2).png" alt="pgy3"></p>
+<p>因为是通过简单命令创建，所以没有图标，名字也是随机的，如果你是强迫症可以参考</p>
+<p>自己手动添加镜像完成后就可以在电脑端或者手机端安装相应客户端后登录同一个人账号，就可以相互访问了，免费版支持三个设备（包括docker端）同时连接</p>
+<p>效果类似于这样</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201215000948.png" alt="pgy4"></p>
+<p>几个设备之间可以通过程序分配的内网ip实现互相访问。而且由于是VPN并且限制访问客户端，基本上没有暴露到外网的危险，缺点也有，如果两个设备之间没法直连，需要通过中转的话，只有1M的转发带宽，只是远程访问管理页面也够用了。</p>
+<h4 id="Docker程序设置"><a href="#Docker程序设置" class="headerlink" title="Docker程序设置"></a>Docker程序设置</h4><p>另外根据教程，Docker端也可以设置一些选项的，下面简单说下：</p>
+<p>点开程序的控制台</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201215002024.png" alt="pgy5"></p>
+<p>输入命令 pgyvpn</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/msedge_5v0ApV3hph.png" alt="pgy6"></p>
+<p>可以根据需要更改设置。</p>
+<h4 id="突破限制的一种方式"><a href="#突破限制的一种方式" class="headerlink" title="突破限制的一种方式"></a>突破限制的一种方式</h4><p>析出再增加一种突破三个设备限制的方式，当然不是完全突破限制，只是一个权宜之计，下面简单说下：</p>
+<p>其实很简单，即使在UNRAID的APP市场里装一个chrome浏览器，这样我通过远程访问到UNRAID中的chrome浏览器，而浏览器就可以访问此设备所在内网的所有设备了。</p>
+<p>如果觉得浏览器功能受限制，还可以访问到UNRAID所创建的windows虚拟机，这样相当于直接远程到内网中的一台电脑，这台电脑也可访问到内网的所有设备了。</p>
+<p><strong>本文中出现的图片大部分都是通过内网穿透远程获取</strong></p>
 
     </div>
 
@@ -252,7 +278,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%8E%86%E5%8F%B2%E9%81%97%E8%BF%B9/" rel="tag"># 历史遗迹</a>
+              <a href="/tags/UNRAID/" rel="tag"># UNRAID</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag"># 内网穿透</a>
           </div>
 
         
@@ -261,13 +289,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/12/08/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" rel="prev" title="软路由折腾笔记">
-      <i class="fa fa-chevron-left"></i> 软路由折腾笔记
+    <a href="/2020/12/14/%E5%85%85%E5%88%86%E5%88%A9%E7%94%A8%E4%BD%A0%E7%9A%84%E4%BC%9A%E8%AE%AE%E6%91%84%E5%83%8F%E5%A4%B4/" rel="prev" title="充分利用你的会议摄像头">
+      <i class="fa fa-chevron-left"></i> 充分利用你的会议摄像头
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/12/09/Debian10%E5%AE%89%E8%A3%85OMV5/" rel="next" title="Debian10安装OMV5">
-      Debian10安装OMV5 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -327,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="nav-number">1.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5"><span class="nav-number">2.</span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5"><span class="nav-number">3.</span> <span class="nav-text">第三步</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%8F%A6%E5%A4%96%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">4.</span> <span class="nav-text">另外的注意事项</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%86%8D%E5%8A%A0%E4%B8%AA%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">5.</span> <span class="nav-text">再加个注意事项</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%92%B2%E5%85%AC%E8%8B%B1"><span class="nav-number">1.</span> <span class="nav-text">蒲公英</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UNRAID%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">UNRAID设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker%E7%A8%8B%E5%BA%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">Docker程序设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AA%81%E7%A0%B4%E9%99%90%E5%88%B6%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">突破限制的一种方式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
