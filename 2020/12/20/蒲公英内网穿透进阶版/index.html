@@ -20,22 +20,33 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="二级标题今天试着搞了个hexo，静态页面，没用过，先试试水 三级标题效果还行，软件用的是Typora，快捷键挺多，域名是阿里买的纯数字域名，十年才60多块钱，空间没买，是通过部署到github上实现的，估计速度不会太好，毕竟是免费的，顺便学下markdown">
+  <meta name="description" content="上次写了一篇关于使用蒲公英的内网穿透的文章，其实我最早是看人介绍蒲公英硬件产品的视频，想买个设备才研究的这个，再加上之前也用过zerotier，所以等docker版出来，我知道消息就马上用上了，顺便写了个教程，今天因为UNRIAD更新新版，我就把机器重启了，我特么忘了我那个蒲公英的docker没有设置自动启动。这就没法远程连接设备了，当时我心里就想：要是买了硬件就好了，也不会出现连不上设备的情况，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="测试文章">
-<meta property="og:url" content="http://example.com/2020/12/03/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/index.html">
+<meta property="og:title" content="蒲公英内网穿透进阶版">
+<meta property="og:url" content="http://example.com/2020/12/20/%E8%92%B2%E5%85%AC%E8%8B%B1%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%BF%9B%E9%98%B6%E7%89%88/index.html">
 <meta property="og:site_name" content="自留地">
-<meta property="og:description" content="二级标题今天试着搞了个hexo，静态页面，没用过，先试试水 三级标题效果还行，软件用的是Typora，快捷键挺多，域名是阿里买的纯数字域名，十年才60多块钱，空间没买，是通过部署到github上实现的，估计速度不会太好，毕竟是免费的，顺便学下markdown">
+<meta property="og:description" content="上次写了一篇关于使用蒲公英的内网穿透的文章，其实我最早是看人介绍蒲公英硬件产品的视频，想买个设备才研究的这个，再加上之前也用过zerotier，所以等docker版出来，我知道消息就马上用上了，顺便写了个教程，今天因为UNRIAD更新新版，我就把机器重启了，我特么忘了我那个蒲公英的docker没有设置自动启动。这就没法远程连接设备了，当时我心里就想：要是买了硬件就好了，也不会出现连不上设备的情况，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/005A95Ecly1glasxej1fcj38w01o0b2m.jpg">
-<meta property="article:published_time" content="2020-12-03T09:16:21.000Z">
-<meta property="article:modified_time" content="2020-12-09T05:09:12.707Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/%E8%92%B2%E5%85%AC%E8%8B%B1%E7%AE%A1%E7%90%86-%E7%BD%91%E7%BB%9C%E8%AF%A6%E6%83%85.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/%E8%92%B2%E5%85%AC%E8%8B%B1%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8B%E8%BD%BD-Oray%E8%B4%9D%E9%94%90%E7%A7%91%E6%8A%80%E8%92%B2%E5%85%AC%E8%8B%B1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/Index-of-ubuntu-releases-18-04-5-%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E9%95%9C%E5%83%8F%E7%AB%99-Tsinghua-Open-Source-Mirror.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/cQH6QNNzf5.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/8AXEaXaMMl.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/msedge_ct5XlwDdXW.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/msedge_m46CGreORg.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/putty.PNG">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/putty2.PNG">
+<meta property="article:published_time" content="2020-12-20T14:22:59.000Z">
+<meta property="article:modified_time" content="2020-12-21T09:44:40.405Z">
 <meta property="article:author" content="Zhenyu Xing">
-<meta property="article:tag" content="静态">
+<meta property="article:tag" content="NAS">
+<meta property="article:tag" content="内网穿透">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="UNraid">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/005A95Ecly1glasxej1fcj38w01o0b2m.jpg">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/%E8%92%B2%E5%85%AC%E8%8B%B1%E7%AE%A1%E7%90%86-%E7%BD%91%E7%BB%9C%E8%AF%A6%E6%83%85.png">
 
-<link rel="canonical" href="http://example.com/2020/12/03/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/">
+<link rel="canonical" href="http://example.com/2020/12/20/%E8%92%B2%E5%85%AC%E8%8B%B1%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%BF%9B%E9%98%B6%E7%89%88/">
 
 
 <script id="page-configurations">
@@ -48,7 +59,7 @@
   };
 </script>
 
-  <title>测试文章 | 自留地</title>
+  <title>蒲公英内网穿透进阶版 | 自留地</title>
   
 
 
@@ -154,7 +165,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/03/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/20/%E8%92%B2%E5%85%AC%E8%8B%B1%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%BF%9B%E9%98%B6%E7%89%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -167,7 +178,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          测试文章
+          蒲公英内网穿透进阶版
         </h1>
 
         <div class="post-meta">
@@ -177,14 +188,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-12-03 17:16:21" itemprop="dateCreated datePublished" datetime="2020-12-03T17:16:21+08:00">2020-12-03</time>
+              <time title="创建时间：2020-12-20 22:22:59" itemprop="dateCreated datePublished" datetime="2020-12-20T22:22:59+08:00">2020-12-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-09 13:09:12" itemprop="dateModified" datetime="2020-12-09T13:09:12+08:00">2020-12-09</time>
+                <time title="修改时间：2020-12-21 17:44:40" itemprop="dateModified" datetime="2020-12-21T17:44:40+08:00">2020-12-21</time>
               </span>
 
           
@@ -196,8 +207,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/03/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/03/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/12/20/%E8%92%B2%E5%85%AC%E8%8B%B1%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%BF%9B%E9%98%B6%E7%89%88/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/20/%E8%92%B2%E5%85%AC%E8%8B%B1%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%BF%9B%E9%98%B6%E7%89%88/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -212,16 +223,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><p>今天试着搞了个hexo，静态页面，没用过，先试试水</p>
-<h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><p>效果还行，软件用的是Typora，快捷键挺多，域名是阿里买的纯数字域名，十年才60多块钱，空间没买，是通过部署到github上实现的，估计速度不会太好，毕竟是免费的，顺便学下markdown</p>
-<h4 id="图床功能"><a href="#图床功能" class="headerlink" title="图床功能"></a>图床功能</h4><p><del>图床是用的微博图床</del></p>
-<p>图库更新为Github+jsDelivr+PicGo</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/005A95Ecly1glasxej1fcj38w01o0b2m.jpg" alt="测试"></p>
-<p>感觉效果还可以</p>
-<p>12/4更新：图片好像只有在登录微博的状态下能正常显示，不知道什么原因。</p>
-<p>12/9更新：换图床为Github+jsDelivr+PicGo 后续全部搞完写一篇整体配置文章。</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>后续这个博客如果能稳定使用的话，我后续会更新下目前掌握的，算是知识？技术？不知道算什么东西的文章，看看我能坚持多久吧。</p>
-<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>感谢这篇教程的提供者 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/ibbo/p/13127388.html">2020年最新Github+Hexo+域名搭建博客详解教程</a></p>
+        <p>上次写了一篇关于使用蒲公英的内网穿透的文章，其实我最早是看人介绍蒲公英硬件产品的视频，想买个设备才研究的这个，再加上之前也用过zerotier，所以等docker版出来，我知道消息就马上用上了，顺便写了个教程，今天因为UNRIAD更新新版，我就把机器重启了，我特么忘了我那个蒲公英的docker没有设置自动启动。这就没法远程连接设备了，当时我心里就想：要是买了硬件就好了，也不会出现连不上设备的情况，就想下单了，下单前我又去搜了下视频，这就是屌丝的悲哀，买个东西也这么磨磨唧唧。不过看到视频介绍里的一个功能，硬件是可以实现访问局域网下所有设备的功能的，心头一阵我就去蒲公英后台看了下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/%E8%92%B2%E5%85%AC%E8%8B%B1%E7%AE%A1%E7%90%86-%E7%BD%91%E7%BB%9C%E8%AF%A6%E6%83%85.png" alt="pgy"></p>
+<p>等一下，硬件成员我知道，服务器是…..</p>
+<p>赶紧研究了下，官网确实有<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/%E8%92%B2%E5%85%AC%E8%8B%B1%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8B%E8%BD%BD-Oray%E8%B4%9D%E9%94%90%E7%A7%91%E6%8A%80%E8%92%B2%E5%85%AC%E8%8B%B1.png" alt="pgy1"></p>
+<p>可只支持x86架构的Linux和window客户端，这限制也太多了，你的客户端可是连树莓派都支持的，怎么到服务器端就不支持了。</p>
+<ul>
+<li>我还想着我闲置的树莓派总算能利用起来了，看来并不成。</li>
+<li>要是有人做一个docker版的服务器端就好了，放狗搜了下，并没有。</li>
+<li>装个windows虚拟机，我看了下上面那个教程，算了吧，我现在用的机器CPU是奔腾银牌J5040，虽然是个性能不错的低功耗，但长期后台跑着个windows server的虚拟机，还是算了吧，这个适合有需要的公司，我还是算了吧</li>
+<li>那就只有linux，Ubuntu就不错，我平时玩的最多，xubuntu就不错占用资源低，不过只运行一个蒲公英用得着桌面环境？</li>
+<li>最终选择，Ubuntu Server版。</li>
+</ul>
+<p>转眼就到了第二天，昨天晚上写道10点断网了，没法远程连接操作，今天在机器旁边，准备装虚拟机</p>
+<ul>
+<li><p>先去官网下载镜像，推荐清华的镜像源，服务器在国内速度快一点<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/18.04.5/">地址</a><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/Index-of-ubuntu-releases-18-04-5-%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E9%95%9C%E5%83%8F%E7%AB%99-Tsinghua-Open-Source-Mirror.png" alt="ubuntu"></p>
+</li>
+<li><p>下载后文件放入UNRAID的isos目录，这个是虚拟机镜像专用的目录，至于下载后怎么传输过去: 我是通过UNRAID自带的Aria2下载，因为本身下载的镜像也在机器里所以直接复制过去就行了</p>
+</li>
+<li><p>新建虚拟机照着我的图片上设置很简单<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/cQH6QNNzf5.png" alt="u2"></p>
+</li>
+<li><p>点击常见后弹出VNC窗口，经过跑代码大概看下我的图设置下，很简单，图比较多是为了方便小白照着操作<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/8AXEaXaMMl.png" alt="u3"></p>
+</li>
+<li><p>最后选择重启，就装完了<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/msedge_ct5XlwDdXW.png" alt="u4"></p>
+</li>
+<li><p>后续重启过程中会有一个弹出镜像提示，点回车过去就好</p>
+</li>
+<li><p>重启后进入命令行界面输入之前设置的账号密码进行登录更新系统安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade  #更新系统命令</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新后输入命令“ifconfig”，查看设备IP<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/msedge_m46CGreORg.png"></p>
+</li>
+</ul>
+<p>后面上面的IP地址，使用局域网内的电脑使用软件putty登录，登陆后输入命令下载安装软件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/putty.PNG" alt="p1"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;down.oray.com&#x2F;pgy&#x2F;linux&#x2F;PgyServer_Ubuntu_1.1.0_X86_64.deb</span><br><span class="line">sudo dpkg -i PgyServer_Ubuntu_1.1.0_X86_64.deb</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/putty2.PNG" alt="p2"></p>
+<p>输入指令“pgyserver”，按提示登陆注册好的账号密码</p>
+<p>后续暂停，我他妈才发现服务器端和硬件端一样，都是需要购买的。既然花钱，就写到这吧，主要步骤已经都写完了。</p>
 
     </div>
 
@@ -251,7 +291,10 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E9%9D%99%E6%80%81/" rel="tag"># 静态</a>
+              <a href="/tags/NAS/" rel="tag"># NAS</a>
+              <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag"># 内网穿透</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/UNraid/" rel="tag"># UNraid</a>
           </div>
 
         
@@ -260,13 +303,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/12/03/firstBlog/" rel="prev" title="firstBlog">
-      <i class="fa fa-chevron-left"></i> firstBlog
+    <a href="/2020/12/17/Unraid%E9%83%A8%E7%BD%B2Docker%E7%B3%BB%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89%E9%83%A8%E7%BD%B2%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7%E5%B9%B6%E4%BD%BF%E7%94%A8%E6%89%8B%E6%9C%BA%E9%9A%8F%E6%97%B6%E7%AE%A1%E7%90%86/" rel="prev" title="Unraid部署Docker系列（四）部署常见的下载工具并使用手机随时管理">
+      <i class="fa fa-chevron-left"></i> Unraid部署Docker系列（四）部署常见的下载工具并使用手机随时管理
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/12/08/%E8%BD%AF%E8%B7%AF%E7%94%B1%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" rel="next" title="软路由折腾笔记">
-      软路由折腾笔记 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -326,7 +366,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">二级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%BA%A7%E6%A0%87%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">三级标题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%BA%8A%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.1.</span> <span class="nav-text">图床功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">1.1.2.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-number">1.1.3.</span> <span class="nav-text">最后</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
