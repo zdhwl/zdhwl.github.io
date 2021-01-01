@@ -20,36 +20,38 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="准备工作之前装过OMV不过是在X86架构的主机上，今天也在树莓派上试试，不过这次我不想照着官方指导使用的系统，因为官方原版系统是32位，现在倒是有64位Beta版了，不过听说BUG不少。我这次准备用国内基于Debian arm64位编译的系统，链接在这  写入镜像也不多说了，用Etcher，简单放张图，下载地址看我上一篇">
+  <meta name="description" content="在正式开始之前，先说一个小事，我通过兴趣领域认证了，对我算是一个小小的肯定。好了，下面看正文 遇到一个小问题今天下班回家准备更新下一篇的，不过我这没有网，不过我上次用手机开热点无线连接过想着肯定没啥问题，结果到家就打脸了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="树莓派的100种玩法（3）OMV--NAS安装">
-<meta property="og:url" content="http://example.com/2020/12/27/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%883%EF%BC%89OMV-NAS%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:title" content="树莓派的100种玩法（4）OMV-NAS设置">
+<meta property="og:url" content="http://example.com/2020/12/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%884%EF%BC%89OMV-NAS%E8%AE%BE%E7%BD%AE/index.html">
 <meta property="og:site_name" content="自留地">
-<meta property="og:description" content="准备工作之前装过OMV不过是在X86架构的主机上，今天也在树莓派上试试，不过这次我不想照着官方指导使用的系统，因为官方原版系统是32位，现在倒是有64位Beta版了，不过听说BUG不少。我这次准备用国内基于Debian arm64位编译的系统，链接在这  写入镜像也不多说了，用Etcher，简单放张图，下载地址看我上一篇">
+<meta property="og:description" content="在正式开始之前，先说一个小事，我通过兴趣领域认证了，对我算是一个小小的肯定。好了，下面看正文 遇到一个小问题今天下班回家准备更新下一篇的，不过我这没有网，不过我上次用手机开热点无线连接过想着肯定没啥问题，结果到家就打脸了">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228083920.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228102414.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228123718.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228125714.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228171036.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228180300.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201229231255.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201229231421.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201229232432.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201230000034.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201230001935.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201230164038.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201230164924.png">
-<meta property="article:published_time" content="2020-12-27T15:53:54.000Z">
-<meta property="article:modified_time" content="2020-12-30T09:00:24.312Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231214907.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231215449.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231223031.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231225407.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231231942.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101001350.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101002551.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101003800.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101011355.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101014250.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101042825.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101043801.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101044649.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101045216.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101142540.png">
+<meta property="article:published_time" content="2020-12-31T06:13:13.000Z">
+<meta property="article:modified_time" content="2021-01-01T06:33:34.223Z">
 <meta property="article:author" content="Zhenyu Xing">
 <meta property="article:tag" content="OMV">
 <meta property="article:tag" content="NAS">
 <meta property="article:tag" content="树莓派">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228083920.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231214907.png">
 
-<link rel="canonical" href="http://example.com/2020/12/27/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%883%EF%BC%89OMV-NAS%E5%AE%89%E8%A3%85/">
+<link rel="canonical" href="http://example.com/2020/12/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%884%EF%BC%89OMV-NAS%E8%AE%BE%E7%BD%AE/">
 
 
 <script id="page-configurations">
@@ -62,7 +64,7 @@
   };
 </script>
 
-  <title>树莓派的100种玩法（3）OMV--NAS安装 | 自留地</title>
+  <title>树莓派的100种玩法（4）OMV-NAS设置 | 自留地</title>
   
 
 
@@ -168,7 +170,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/27/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%883%EF%BC%89OMV-NAS%E5%AE%89%E8%A3%85/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%884%EF%BC%89OMV-NAS%E8%AE%BE%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -181,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          树莓派的100种玩法（3）OMV--NAS安装
+          树莓派的100种玩法（4）OMV-NAS设置
         </h1>
 
         <div class="post-meta">
@@ -191,14 +193,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-12-27 23:53:54" itemprop="dateCreated datePublished" datetime="2020-12-27T23:53:54+08:00">2020-12-27</time>
+              <time title="创建时间：2020-12-31 14:13:13" itemprop="dateCreated datePublished" datetime="2020-12-31T14:13:13+08:00">2020-12-31</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-30 17:00:24" itemprop="dateModified" datetime="2020-12-30T17:00:24+08:00">2020-12-30</time>
+                <time title="修改时间：2021-01-01 14:33:34" itemprop="dateModified" datetime="2021-01-01T14:33:34+08:00">2021-01-01</time>
               </span>
 
           
@@ -210,8 +212,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/27/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%883%EF%BC%89OMV-NAS%E5%AE%89%E8%A3%85/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/27/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%883%EF%BC%89OMV-NAS%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/12/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%884%EF%BC%89OMV-NAS%E8%AE%BE%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%884%EF%BC%89OMV-NAS%E8%AE%BE%E7%BD%AE/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -226,49 +228,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>之前装过OMV不过是在X86架构的主机上，今天也在树莓派上试试，不过这次我不想照着官方指导使用的系统，因为官方原版系统是32位，现在倒是有64位Beta版了，不过听说BUG不少。我这次准备用国内基于Debian arm64位编译的系统，链接<a target="_blank" rel="noopener" href="https://gitee.com/openfans-community/Debian-Pi-Aarch64">在这</a></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228083920.png" alt="系统"></p>
-<p>写入镜像也不多说了，用Etcher，简单放张图，下载地址看我<a target="_blank" rel="noopener" href="https://www.425234.xyz/2020/12/24/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%882%EF%BC%89Lakka%E6%B8%B8%E6%88%8F%E6%9C%BA/">上一篇</a></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228102414.png" alt="etcher"></p>
-<p>tf卡写好后插入树莓派启动，这次有接显示器和网线</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228123718.png"></p>
-<p>输入默认账号：pi  密码： raspberry，登陆后输入如下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd root      #设置root密码</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade      #更新系统</span><br></pre></td></tr></table></figure>
+        <p>在正式开始之前，先说一个小事，我通过兴趣领域认证了，对我算是一个小小的肯定。好了，下面看正文</p>
+<h3 id="遇到一个小问题"><a href="#遇到一个小问题" class="headerlink" title="遇到一个小问题"></a>遇到一个小问题</h3><p>今天下班回家准备更新下一篇的，不过我这没有网，不过我上次用手机开热点无线连接过想着肯定没啥问题，结果到家就打脸了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231214907.png"></p>
+<p>还以为是环境变量设置问题使用如下命令查看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano &#x2F;etc&#x2F;profile   </span><br></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228125714.png"></p>
-<p>这里使用命令 ifconfig 查看下设备IP，这里换PuTTY登录，至于PuTTY的使用，请看上一篇（前文有链接）</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228171036.png"></p>
-<h4 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h4><p>根据官方教程输入提供的命令，直接复制粘贴</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reboot            #先重启下系统</span><br><span class="line">wget -O - https:&#x2F;&#x2F;github.com&#x2F;OpenMediaVault-Plugin-Developers&#x2F;installScript&#x2F;raw&#x2F;master&#x2F;install | sudo bash </span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231215449.png"></p>
+<p>赶紧查下命令位置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231223031.png"></p>
+<p>赶紧搜下，据说是上面的脚本里删除了dhcp5和networkmanager，我赶紧去看了下，确实有</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231225407.png"></p>
+<p>这里我就直接照抄解决方式了，这里<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Bt4y1a71z">抄的</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y dhcpcd5 network-manager</span><br><span class="line">sudo systemctl enable dhcpcd</span><br><span class="line">sudo systemctl start dhcpcd</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201228180300.png"></p>
-<p>怎么解决，查询下这个地址解析的IP，这里我用的IP138，看看解析处出来的哪个地址能ping通</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201229231255.png"></p>
-<p>通过命令添加记录，CTRL+O按回车保存，CTRL+X关闭</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nano  &#x2F;etc&#x2F;hosts                                            #修改hosts命令</span><br><span class="line">151.101.88.133           raw.githubusercontent.com         #此处是复制到hosts文件中的</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201229231421.png"></p>
-<p>继续通过命令安装，等待安装完成，这里可以使用方向键上下切换之前输入过的历史命令，不用每次手动输入，另外由于要装很多必要的组件，这个系统的优势就出来了，它用的国内清华的源</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201229232432.png"></p>
-<p>漫长的等待，终于安装完成，SSH登录会断开</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201230000034.png"></p>
-<p>现在通过显示器看看系统提示：使用命令 omv-firstaid来进行初始化设置</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201230001935.png"></p>
-<p>输入命令后进入初始化配置界面，这里多说一句修改配置必须切换到root账号，否则修改不能保存</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201230164038.png"></p>
-<p>这里端口号我改成了8060，账号 admin   密码 openmediavault</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201230164924.png"></p>
-<p>关于OMV的详细设置我准备放到下一篇，这里先到这，后续过两天再说，年底工作稍微有点多。如果等不及可以百度下OMV基本配置，大差不差，不过我肯定会更新的，因为篇幅比较长，这个准备做成一个系列。慢慢来，不急。</p>
-<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>插一个小技巧，应该是Linux通用的：写这篇的时候因为是拿碎片时间来写的（毕竟还有工作）所以，断断续续拿回家里（出租屋）写，因为没有网络，又得使用手机开热点，虽然可以用我第一篇的技巧解决，不过还有一种更高级的方式连接网络，就是命令行，因为这算是附赠的，我就写一堆命令了，就不截图了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli device wifi               #搜索wifi网络的意思  </span><br></pre></td></tr></table></figure>
-
-<p>如果这里出现报错 networmanage is not running，使用如下命令开启服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service network-manager start   #开启网络管理服务</span><br></pre></td></tr></table></figure>
-
-<p>之后再使用上面那个命令会出现所有能搜索到的wifi，使用如下命令连接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmcli device wifi con 你的wifi名 password 密码   #con后面跟名字，password后面跟密码，注意空格</span><br></pre></td></tr></table></figure>
-
-<p>另外输入wifi名是可以通过TAB键补全，没别的要交代了。</p>
+<p>上面命令的意思就是在重新装上以上两个服务并且添加到开机启动项</p>
+<h4 id="另一种解决方式"><a href="#另一种解决方式" class="headerlink" title="另一种解决方式"></a>另一种解决方式</h4><p>既然找到解决方法了，我就再找一种，因为我正在写的这篇东西用的是什么，笔记本。而我的笔记本也是通过手机热点联网的，而我的笔记本还有一个网口，那么下边这种解决方式就来了：</p>
+<p>通过桥接的方式解决，具体操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231231942.png"></p>
+<p>IP地址通过显示器查看是192.168.188.113</p>
+<h3 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h3><p>其实前面那部分可以掠过，只是说下我遇到的问题，下面正式开始</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101001350.png"></p>
+<p>建议更改下默认密码</p>
+<p>这里插一句：每次更改设置后需要根据页面上的提示点击”应用“</p>
+<p>然后需要在”更新管理“选项检查下更新，选择更新后点击升级下软件包</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101002551.png"></p>
+<p>等待更新完成</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101003800.png"></p>
+<p>如果遇到更新失败可以少选几个再更新</p>
+<p>更新完成后选择OMV-Extras选项，点开这个，安装docker和Portainer</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101011355.png"></p>
+<p>安装完成后打开portainer，关于portainer的具体设置可以看我另外一篇<a target="_blank" rel="noopener" href="https://www.425234.xyz/2020/12/09/OMV5%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE%EF%BC%882%EF%BC%89Portainer%E8%AE%BE%E7%BD%AE/">文章</a></p>
+<p>这里只放一个</p>
+<ul>
+<li>阿里云加速获取<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-shanghai/instances/mirrors">地址</a></li>
+</ul>
+<p>树莓派通过USB3.0连接硬盘，之后开始设置共享文件夹</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101014250.jpg"></p>
+<p>左侧选择”文件系统“—-”创建“—-设备选择需要格式化的硬盘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101042825.png"></p>
+<p>看好硬盘，别选错了</p>
+<p>接着选择”共享文件夹“—–”添加”，如下图所示创建共享文件夹，设备选择刚刚创建的硬盘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101043801.png"></p>
+<p>查看用户权限，是否勾选ssh，我这里直接用的pi账户，默认已经勾选</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101044649.png"></p>
+<p>再点击”特权“，为用户分配刚刚创建的共享文件夹的权限</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101045216.png"></p>
+<p>这里主要的设置就结束了</p>
+<h3 id="不是为了我凑字数的凑字数"><a href="#不是为了我凑字数的凑字数" class="headerlink" title="不是为了我凑字数的凑字数"></a>不是为了我凑字数的凑字数</h3><p>这里说一个小技巧，这个目录在使用docker时可以参考UNRAID的形式做成这种目录结构，也是对后续更新内容的一个预告吧</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101142540.png"></p>
 
     </div>
 
@@ -309,13 +317,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/12/24/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%882%EF%BC%89Lakka%E6%B8%B8%E6%88%8F%E6%9C%BA/" rel="prev" title="树莓派的100种玩法（2）Lakka游戏机">
-      <i class="fa fa-chevron-left"></i> 树莓派的100种玩法（2）Lakka游戏机
+    <a href="/2020/12/27/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%883%EF%BC%89OMV-NAS%E5%AE%89%E8%A3%85/" rel="prev" title="树莓派的100种玩法（3）OMV--NAS安装">
+      <i class="fa fa-chevron-left"></i> 树莓派的100种玩法（3）OMV--NAS安装
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/12/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%884%EF%BC%89OMV-NAS%E8%AE%BE%E7%BD%AE/" rel="next" title="树莓派的100种玩法（4）OMV-NAS设置">
-      树莓派的100种玩法（4）OMV-NAS设置 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -375,7 +380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">开始安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">遇到一个小问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">另一种解决方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%BC%8F%E5%BC%80%E5%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">正式开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E6%98%AF%E4%B8%BA%E4%BA%86%E6%88%91%E5%87%91%E5%AD%97%E6%95%B0%E7%9A%84%E5%87%91%E5%AD%97%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">不是为了我凑字数的凑字数</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
