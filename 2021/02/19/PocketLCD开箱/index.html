@@ -20,25 +20,30 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="写在前面这个没想写成什么系列的东西，只是想到了，或者说是遇到问题了，并且找到解决方式，然后做个记录，省的将来忘记了。仅此而已 什么问题简单的说就是更新插件报错，连不上 raw.githubusercontent.com 这个域名">
+  <meta name="description" content="写在前面这东西可能有一部分人知道，就是B站稚晖君 发布的一个开源项目，关于其具体内容可以看稚晖君的这期视频了解 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV17D4y1X7AT 如果懒得看我就简单给你总结下：就是一个带充电宝功能的便携显示器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UNRAID拾遗（1）解决插件更新报错">
-<meta property="og:url" content="http://example.com/2021/01/06/UNRAID%E6%8B%BE%E9%81%97%EF%BC%881%EF%BC%89%E8%A7%A3%E5%86%B3%E6%8F%92%E4%BB%B6%E6%9B%B4%E6%96%B0%E6%8A%A5%E9%94%99/index.html">
+<meta property="og:title" content="PocketLCD开箱">
+<meta property="og:url" content="http://example.com/2021/02/19/PocketLCD%E5%BC%80%E7%AE%B1/index.html">
 <meta property="og:site_name" content="自留地">
-<meta property="og:description" content="写在前面这个没想写成什么系列的东西，只是想到了，或者说是遇到问题了，并且找到解决方式，然后做个记录，省的将来忘记了。仅此而已 什么问题简单的说就是更新插件报错，连不上 raw.githubusercontent.com 这个域名">
+<meta property="og:description" content="写在前面这东西可能有一部分人知道，就是B站稚晖君 发布的一个开源项目，关于其具体内容可以看稚晖君的这期视频了解 https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV17D4y1X7AT 如果懒得看我就简单给你总结下：就是一个带充电宝功能的便携显示器">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210106111654.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210106112055.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210106121346.png">
-<meta property="article:published_time" content="2021-01-05T19:15:46.000Z">
-<meta property="article:modified_time" content="2021-01-06T04:23:50.043Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220121553.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220122153.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220123106.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220123652.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220124202.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220125959.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220130542.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220150413.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220152134.jpg">
+<meta property="article:published_time" content="2021-02-19T04:11:29.000Z">
+<meta property="article:modified_time" content="2021-02-20T07:26:19.922Z">
 <meta property="article:author" content="Zhenyu Xing">
-<meta property="article:tag" content="NAS">
-<meta property="article:tag" content="UNRAID">
+<meta property="article:tag" content="开箱">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210106111654.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220121553.png">
 
-<link rel="canonical" href="http://example.com/2021/01/06/UNRAID%E6%8B%BE%E9%81%97%EF%BC%881%EF%BC%89%E8%A7%A3%E5%86%B3%E6%8F%92%E4%BB%B6%E6%9B%B4%E6%96%B0%E6%8A%A5%E9%94%99/">
+<link rel="canonical" href="http://example.com/2021/02/19/PocketLCD%E5%BC%80%E7%AE%B1/">
 
 
 <script id="page-configurations">
@@ -51,7 +56,7 @@
   };
 </script>
 
-  <title>UNRAID拾遗（1）解决插件更新报错 | 自留地</title>
+  <title>PocketLCD开箱 | 自留地</title>
   
 
 
@@ -157,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/06/UNRAID%E6%8B%BE%E9%81%97%EF%BC%881%EF%BC%89%E8%A7%A3%E5%86%B3%E6%8F%92%E4%BB%B6%E6%9B%B4%E6%96%B0%E6%8A%A5%E9%94%99/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/19/PocketLCD%E5%BC%80%E7%AE%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +175,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          UNRAID拾遗（1）解决插件更新报错
+          PocketLCD开箱
         </h1>
 
         <div class="post-meta">
@@ -179,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-01-06 03:15:46 / 修改时间：12:23:50" itemprop="dateCreated datePublished" datetime="2021-01-06T03:15:46+08:00">2021-01-06</time>
+              <time title="创建时间：2021-02-19 12:11:29" itemprop="dateCreated datePublished" datetime="2021-02-19T12:11:29+08:00">2021-02-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-20 15:26:19" itemprop="dateModified" datetime="2021-02-20T15:26:19+08:00">2021-02-20</time>
+              </span>
 
           
   
@@ -193,8 +204,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/01/06/UNRAID%E6%8B%BE%E9%81%97%EF%BC%881%EF%BC%89%E8%A7%A3%E5%86%B3%E6%8F%92%E4%BB%B6%E6%9B%B4%E6%96%B0%E6%8A%A5%E9%94%99/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/06/UNRAID%E6%8B%BE%E9%81%97%EF%BC%881%EF%BC%89%E8%A7%A3%E5%86%B3%E6%8F%92%E4%BB%B6%E6%9B%B4%E6%96%B0%E6%8A%A5%E9%94%99/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/02/19/PocketLCD%E5%BC%80%E7%AE%B1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/19/PocketLCD%E5%BC%80%E7%AE%B1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -209,20 +220,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>这个没想写成什么系列的东西，只是想到了，或者说是遇到问题了，并且找到解决方式，然后做个记录，省的将来忘记了。仅此而已</p>
-<h4 id="什么问题"><a href="#什么问题" class="headerlink" title="什么问题"></a>什么问题</h4><p>简单的说就是更新插件报错，连不上 raw.githubusercontent.com 这个域名</p>
-<h4 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h4><p>解决方式也很简单，改下host文件，增加域名解析地址具体操作如下</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210106111654.png"></p>
-<p>具体这个地址是怎么获取到的呢，通过各种解析服务获取到的</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210106112055.png"></p>
-<p>但这里有个问题，UNRAID重启之后修改的记录会被清空，这里提供一种解决方式：</p>
-<p>​    使用CA User Scripts插件安装脚本每次开机自动运行添加hosts条目</p>
-<p>具体操作如下</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210106121346.png"></p>
-<p>那行命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;151.101.88.133 raw.githubusercontent.com&quot; &gt;&gt; &#x2F;etc&#x2F;hosts  </span><br></pre></td></tr></table></figure>
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>这东西可能有一部分人知道，就是B站<a target="_blank" rel="noopener" href="https://space.bilibili.com/20259914">稚晖君</a> 发布的一个开源项目，关于其具体内容可以看稚晖君的这期视频了解</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17D4y1X7AT">https://www.bilibili.com/video/BV17D4y1X7AT</a></p>
+<p>如果懒得看我就简单给你总结下：<em>就是一个带充电宝功能的便携显示器</em></p>
+<p>当时对这个东西就十分感兴趣，不过身为一个光荣的伸手党，我仅有的两次参加这种开源项目失败经历来看，还是等QQ群开车比较好，这里为了避免广告嫌疑，会隐去相关信息，只说开箱。</p>
+<h3 id="参加众筹"><a href="#参加众筹" class="headerlink" title="参加众筹"></a>参加众筹</h3><p>果不其然，稚晖君节目的第二天，之前的群里就发布了众筹，然后就是等待</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220121553.png">然后昨天收到机器，今天就发开箱了</p>
+<h3 id="开箱"><a href="#开箱" class="headerlink" title="开箱"></a>开箱</h3><p>包装保护还不错，没有多余的东西，就一个设备</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220122153.png"></p>
+<p>插上我的笔记本试了下，显示没有问题，不过并不是每次插入都能正常显示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220123106.jpg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220123652.gif"></p>
+<p>显示效果不错，不过侧面漏光比较严重</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220124202.png"></p>
+<p>整体做工一般，各种缝隙比较大，而且中框中间位置由于比较薄，是软的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220125959.jpg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220130542.gif"></p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>这里说下这个显示器的兼容性，总结下就是兼容性比较差，winndows系统还好，基本都能正常使用，但是linux就不好说了，树莓派还好，可以通过配置config.txt文件来实现正常显示，到目前为止，我只测试了官方的Debian和Manjaro，有个小问题，就算调好设置，显示还是有点问题，屏幕顶端有部分不显示，如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220150413.png"></p>
+<p>另提供下商家给的config.txt文件的内容，如果需要可能会要在上面微调一些设置，有需要的可以取用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">hdmi_force_hotplug&#x3D;1</span><br><span class="line">disable_overscan</span><br><span class="line">overscan_left&#x3D;0</span><br><span class="line">overscan_right&#x3D;0</span><br><span class="line">overscan_top&#x3D;0</span><br><span class="line">overscan_bottom&#x3D;0</span><br><span class="line">display_rotate&#x3D;1</span><br><span class="line">gpu_mem&#x3D;256</span><br><span class="line">hdmi_timings&#x3D;1080 0 18 16 48 1920 0 8 16 10 0 0 0 60 0  126000000 3</span><br><span class="line">hdmi_group&#x3D;2</span><br><span class="line">hdmi_mode&#x3D;87</span><br><span class="line">hdmi_ignore_edid&#x3D;0xa5000080</span><br><span class="line">hdmi_cvt 1080 1920 60</span><br><span class="line">max_framebuffer_width&#x3D;1080</span><br><span class="line">max_framebuffer_height&#x3D;1920</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p>此处IP地址仅代表我所在地区的实际情况，使用前最好实际ping下，另外此方法也可用于其它不能访问地址的情况。</p>
+<p>上面各个参数的含义可以参考这篇文章，我这里就不copy人家的内容了，<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4b6934487587">点我</a></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>目前这个显示器来说，我不推荐，兼容性差，而且因为屏幕四周没有保护，估计摔一次就完了，如果你喜欢折腾，并且不差钱，可以买来玩一下，因为就纯显示器的功能来说，跟我之前买的VRGATE眼镜改的显示器并没有什么本质区别，都一样兼容性不好。</p>
+<p>最后结束来个合影吧</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210220152134.jpg"></p>
 
     </div>
 
@@ -252,8 +274,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/NAS/" rel="tag"># NAS</a>
-              <a href="/tags/UNRAID/" rel="tag"># UNRAID</a>
+              <a href="/tags/%E5%BC%80%E7%AE%B1/" rel="tag"># 开箱</a>
           </div>
 
         
@@ -262,13 +283,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%885%EF%BC%89OMV-%E5%B8%B8%E8%A7%81docker%E9%95%9C%E5%83%8F%E9%83%A8%E7%BD%B2/" rel="prev" title="树莓派的100种玩法（5）OMV-常见docker镜像部署">
-      <i class="fa fa-chevron-left"></i> 树莓派的100种玩法（5）OMV-常见docker镜像部署
+    <a href="/2021/02/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%887%EF%BC%89%E9%AB%98%E6%B8%85%E6%92%AD%E6%94%BE%E5%99%A8/" rel="prev" title="树莓派的100种玩法（7）多媒体娱乐中心">
+      <i class="fa fa-chevron-left"></i> 树莓派的100种玩法（7）多媒体娱乐中心
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/01/11/6%E7%9B%98%E4%BD%8DNAS%E6%9C%BA%E7%AE%B1%E5%BC%80%E7%AE%B1%E7%AE%80%E6%B5%8B/" rel="next" title="6盘位NAS机箱开箱简测">
-      6盘位NAS机箱开箱简测 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -328,7 +346,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">什么问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">解决方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">注意：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E5%8A%A0%E4%BC%97%E7%AD%B9"><span class="nav-number">2.</span> <span class="nav-text">参加众筹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E7%AE%B1"><span class="nav-number">3.</span> <span class="nav-text">开箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83"><span class="nav-number">4.</span> <span class="nav-text">其它</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
