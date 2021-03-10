@@ -20,33 +20,26 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="”系统—-常规设置“ 里可以修改网页端口和管理员密码  建议更改下默认密码 这里插一句：每次更改设置后需要根据页面上的提示点击”应用“">
+  <meta name="description" content="准备工作1234567树莓派一个（我这里是4B 4GB版）TF卡一张（最好8g以上）系统镜像写卡工具Etcher  关于这个系统镜像这里多说一句：系统是在这里下载的，我选的最新的Android11的版本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OMV5的基本设置">
-<meta property="og:url" content="http://example.com/2020/12/09/OMV5%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE/index.html">
+<meta property="og:title" content="树莓派的100种玩法（8）安卓网络机顶盒">
+<meta property="og:url" content="http://example.com/2021/03/06/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%888%EF%BC%89%E5%AE%89%E5%8D%93%E7%BD%91%E7%BB%9C%E6%9C%BA%E9%A1%B6%E7%9B%92/index.html">
 <meta property="og:site_name" content="自留地">
-<meta property="og:description" content="”系统—-常规设置“ 里可以修改网页端口和管理员密码  建议更改下默认密码 这里插一句：每次更改设置后需要根据页面上的提示点击”应用“">
+<meta property="og:description" content="准备工作1234567树莓派一个（我这里是4B 4GB版）TF卡一张（最好8g以上）系统镜像写卡工具Etcher  关于这个系统镜像这里多说一句：系统是在这里下载的，我选的最新的Android11的版本">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-a99552eb0dcf1234.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-7a421797680d1e1b.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-2b3a657c52db2858.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-b4241bf55500cc3c.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-af1051965f0d2486.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-dc0527ad4d59694a.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-ea0171f45d7ca2bd.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-04b7ef340053ac69.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-f7a50d72d23fa728.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-aa04a7f4b88121d1.png">
-<meta property="article:published_time" content="2020-12-09T15:08:10.000Z">
-<meta property="article:modified_time" content="2020-12-09T15:30:21.837Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210306190454.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210306190514.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210306192502.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210308195917.png">
+<meta property="article:published_time" content="2021-03-06T10:02:58.000Z">
+<meta property="article:modified_time" content="2021-03-08T13:07:44.968Z">
 <meta property="article:author" content="Zhenyu Xing">
-<meta property="article:tag" content="NAS">
-<meta property="article:tag" content="历史遗迹">
-<meta property="article:tag" content="OMV">
+<meta property="article:tag" content="树莓派">
+<meta property="article:tag" content="安卓">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-a99552eb0dcf1234.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210306190454.png">
 
-<link rel="canonical" href="http://example.com/2020/12/09/OMV5%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE/">
+<link rel="canonical" href="http://example.com/2021/03/06/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%888%EF%BC%89%E5%AE%89%E5%8D%93%E7%BD%91%E7%BB%9C%E6%9C%BA%E9%A1%B6%E7%9B%92/">
 
 
 <script id="page-configurations">
@@ -59,7 +52,7 @@
   };
 </script>
 
-  <title>OMV5的基本设置 | 自留地</title>
+  <title>树莓派的100种玩法（8）安卓网络机顶盒 | 自留地</title>
   
 
 
@@ -165,7 +158,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/09/OMV5%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/06/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%888%EF%BC%89%E5%AE%89%E5%8D%93%E7%BD%91%E7%BB%9C%E6%9C%BA%E9%A1%B6%E7%9B%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,7 +171,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          OMV5的基本设置
+          树莓派的100种玩法（8）安卓网络机顶盒
         </h1>
 
         <div class="post-meta">
@@ -187,10 +180,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-12-09 23:08:10 / 修改时间：23:30:21" itemprop="dateCreated datePublished" datetime="2020-12-09T23:08:10+08:00">2020-12-09</time>
+              <time title="创建时间：2021-03-06 18:02:58" itemprop="dateCreated datePublished" datetime="2021-03-06T18:02:58+08:00">2021-03-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-08 21:07:44" itemprop="dateModified" datetime="2021-03-08T21:07:44+08:00">2021-03-08</time>
+              </span>
 
           
   
@@ -201,8 +200,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/09/OMV5%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/09/OMV5%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/03/06/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%888%EF%BC%89%E5%AE%89%E5%8D%93%E7%BD%91%E7%BB%9C%E6%9C%BA%E9%A1%B6%E7%9B%92/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/06/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%888%EF%BC%89%E5%AE%89%E5%8D%93%E7%BD%91%E7%BB%9C%E6%9C%BA%E9%A1%B6%E7%9B%92/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -217,50 +216,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>”系统—-常规设置“ 里可以修改网页端口和管理员密码</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-a99552eb0dcf1234.png" alt="OMV"></p>
-<p>建议更改下默认密码</p>
-<p><code>这里插一句：每次更改设置后需要根据页面上的提示点击”应用“</code></p>
-<p>然后需要在”更新管理“选项检查下更新，选择更新后点击升级下软件包</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-7a421797680d1e1b.png" alt="OMV2"></p>
-<p>如果遇到更新失败可以少选几个再更新</p>
-<p>点击插件选项页，选择”上传“，然后到<a target="_blank" rel="noopener" href="https://forum.openmediavault.org/index.php/Thread/5549-OMV-Extras-org-Plugin/">这个页面</a>下载OMV-Extras插件包，因为我装的是OMV5，所以下载这个</p>
-<ul>
-<li>Download the plugin to enable this repository here:<ul>
-<li>For OMV 2.x (stoneburner) - <a target="_blank" rel="noopener" href="https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/openmediavault-omvextrasorg_latest_all.deb">https://github.com/OpenMediaVa…vextrasorg_latest_all.deb</a></li>
-<li>For OMV 3.x (erasmus) - <a target="_blank" rel="noopener" href="https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/openmediavault-omvextrasorg_latest_all3.deb">https://github.com/OpenMediaVa…extrasorg_latest_all3.deb</a></li>
-<li>For OMV 4.x (arrakis) - <a target="_blank" rel="noopener" href="https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/openmediavault-omvextrasorg_latest_all4.deb">https://github.com/OpenMediaVa…extrasorg_latest_all4.deb</a></li>
-<li>For OMV 5.x (usul) - <a target="_blank" rel="noopener" href="https://github.com/OpenMediaVault-Plugin-Developers/packages/raw/master/openmediavault-omvextrasorg_latest_all5.deb">https://github.com/OpenMediaVa…extrasorg_latest_all5.deb</a></li>
-</ul>
-</li>
-<li>Go to the plugin tab in OMV’s web interface.</li>
-<li>Upload the file.</li>
-<li>Select the newly uploaded plugin openmediavault-omvextrasorg</li>
-<li>Click on Install.</li>
-<li>Refresh page.</li>
-<li>Go to the plugin tab and click Check.</li>
-</ul>
-<p>omv-extras网站上没有这个版本</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-2b3a657c52db2858.png" alt="OMV3"></p>
-<p>装这个插件包的主要目的是为了安装docker</p>
-<p>上传后检查更新，选择安装</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-b4241bf55500cc3c.png" alt="OMV4"></p>
-<h5 id="这个最有用"><a href="#这个最有用" class="headerlink" title="这个最有用"></a>这个最有用</h5><p>安装好后到菜单栏就会和我一样再左侧多处OMV-Extras选项，点开这个，安装docker和Portainer</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-af1051965f0d2486.png" alt="OMV5"></p>
-<h5 id="然后就可以图形页面管理Docker了"><a href="#然后就可以图形页面管理Docker了" class="headerlink" title="然后就可以图形页面管理Docker了"></a>然后就可以图形页面管理Docker了</h5><p>然后接着往下来设置共享文件夹，左侧选择”文件系统“—-”创建“—-设备选择需要格式化的硬盘，我这已经创建好了</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-dc0527ad4d59694a.png" alt="OMV6"></p>
-<h5 id="看好硬盘，别选错了"><a href="#看好硬盘，别选错了" class="headerlink" title="看好硬盘，别选错了"></a>看好硬盘，别选错了</h5><p>接着选择”共享文件夹“—–”添加”，如下图所示创建共享文件夹，设备选择刚刚创建的硬盘</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-ea0171f45d7ca2bd.png" alt="OMV7"></p>
-<h5 id="权限要设置好"><a href="#权限要设置好" class="headerlink" title="权限要设置好"></a>权限要设置好</h5><p>点击”用户“选择需要设置的账户—-”编辑“—-”用户组“—-勾选”ssh“保存</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-04b7ef340053ac69.png" alt="OMV8"></p>
-<p>勾选后可以通过远程命令访问，后续要用到</p>
-<p>再点击”特权“，为用户分配刚刚创建的共享文件夹的权限</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-f7a50d72d23fa728.png" alt="OMV9"></p>
-<p>一般都设置读写</p>
-<p>原谅我的不耐烦后面这些服务我就不写开启过程了，自己根据需求设置</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/19975038-aa04a7f4b88121d1.png" alt="OMV10"></p>
-<p>这些个怎么设置网上都能搜索到</p>
-<p>OK，下一篇说下常用docker镜像配置。</p>
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">树莓派一个（我这里是4B 4GB版）</span><br><span class="line"></span><br><span class="line">TF卡一张（最好8g以上）</span><br><span class="line"></span><br><span class="line">系统镜像</span><br><span class="line"></span><br><span class="line">写卡工具Etcher</span><br></pre></td></tr></table></figure>
+
+<p>关于这个系统镜像这里多说一句：系统是在<a target="_blank" rel="noopener" href="https://konstakang.com/devices/rpi4/">这里</a>下载的，我选的最新的Android11的版本</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210306190454.png"></p>
+<p>因为网络问题，如果你没法下载，这里提供下百度盘的连接，下载后直接通过Etcher写入内存卡</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210306190514.png"></p>
+<p>写完系统后不要着急插入，哦，不是，我的意思是先通过电脑重新连接下TF卡，使用分区工具扩展下分区，否则TF卡有部分空间就浪费了，我这里用的是DiskGenius，具体操作如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210306192502.gif"></p>
+<h3 id="简单设置"><a href="#简单设置" class="headerlink" title="简单设置"></a>简单设置</h3><p>扩容发完成后将TF卡插入树莓派启动再启动页面点击下一步</p>
+<p>&lt;video id=”video” controls=””src=”<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iX4y1V7DJ&quot;">https://www.bilibili.com/video/BV1iX4y1V7DJ&quot;</a> preload=”none”&gt;</p>
+<p>这里说下常用的安卓功能按键</p>
+<p> <em>F1 = Home, F2 = Back, F3 = Multi-tasking, F4 = Menu, F5 = Power, F11 = Volume down, and F12 = Volume up.</em></p>
+<h3 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h3><p>为了避免每次装软件还要通过过U盘拷贝，这里先给它装个市场，这里根据我自己的使用习惯，装的是<a target="_blank" rel="noopener" href="http://www.shafa.com/market">沙发管家</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210308195917.png"></p>
+<p>既然是网络机顶盒，这个安卓原生界面肯定不行，给它装个常用AndroidTV的桌面吧，这里用的是简单桌面：这里是Github<a target="_blank" rel="noopener" href="https://github.com/aystshen/linearlauncher">地址</a> ，当然这个软件再沙发管家种也能搜到，叫“蛮荒桌面”</p>
+<p>装好后大概是这个样子</p>
 
     </div>
 
@@ -290,9 +261,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/NAS/" rel="tag"># NAS</a>
-              <a href="/tags/%E5%8E%86%E5%8F%B2%E9%81%97%E8%BF%B9/" rel="tag"># 历史遗迹</a>
-              <a href="/tags/OMV/" rel="tag"># OMV</a>
+              <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" rel="tag"># 树莓派</a>
+              <a href="/tags/%E5%AE%89%E5%8D%93/" rel="tag"># 安卓</a>
           </div>
 
         
@@ -301,13 +271,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/12/09/Debian10%E5%AE%89%E8%A3%85OMV5/" rel="prev" title="Debian10安装OMV5">
-      <i class="fa fa-chevron-left"></i> Debian10安装OMV5
+    <a href="/2021/02/19/PocketLCD%E5%BC%80%E7%AE%B1/" rel="prev" title="PocketLCD开箱">
+      <i class="fa fa-chevron-left"></i> PocketLCD开箱
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/12/09/OMV5%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE%EF%BC%882%EF%BC%89Portainer%E8%AE%BE%E7%BD%AE/" rel="next" title="OMV5的基本设置（2）Portainer设置">
-      OMV5的基本设置（2）Portainer设置 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -367,7 +334,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%99%E4%B8%AA%E6%9C%80%E6%9C%89%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">这个最有用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%84%B6%E5%90%8E%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%9B%BE%E5%BD%A2%E9%A1%B5%E9%9D%A2%E7%AE%A1%E7%90%86Docker%E4%BA%86"><span class="nav-number">2.</span> <span class="nav-text">然后就可以图形页面管理Docker了</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%9C%8B%E5%A5%BD%E7%A1%AC%E7%9B%98%EF%BC%8C%E5%88%AB%E9%80%89%E9%94%99%E4%BA%86"><span class="nav-number">3.</span> <span class="nav-text">看好硬盘，别选错了</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E8%A6%81%E8%AE%BE%E7%BD%AE%E5%A5%BD"><span class="nav-number">4.</span> <span class="nav-text">权限要设置好</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">简单设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">常用软件</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
