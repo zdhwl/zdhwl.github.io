@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.425234.xyz","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在正式开始之前，先说一个小事，我通过兴趣领域认证了，对我算是一个小小的肯定。好了，下面看正文 遇到一个小问题今天下班回家准备更新下一篇的，不过我这没有网，不过我上次用手机开热点无线连接过想着肯定没啥问题，结果到家就打脸了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派的100种玩法（4）OMV-NAS设置">
+<meta property="og:url" content="https://www.425234.xyz/2020/12/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%884%EF%BC%89OMV-NAS%E8%AE%BE%E7%BD%AE/index.html">
+<meta property="og:site_name" content="自留地">
+<meta property="og:description" content="在正式开始之前，先说一个小事，我通过兴趣领域认证了，对我算是一个小小的肯定。好了，下面看正文 遇到一个小问题今天下班回家准备更新下一篇的，不过我这没有网，不过我上次用手机开热点无线连接过想着肯定没啥问题，结果到家就打脸了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231214907.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231215449.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231223031.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231225407.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231231942.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101001350.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101002551.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101003800.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101011355.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101014250.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101042825.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101043801.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101044649.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101045216.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101142540.png">
+<meta property="article:published_time" content="2020-12-31T06:13:13.000Z">
+<meta property="article:modified_time" content="2021-01-01T06:51:24.514Z">
+<meta property="article:author" content="Zhenyu Xing">
+<meta property="article:tag" content="NAS">
+<meta property="article:tag" content="OMV">
+<meta property="article:tag" content="树莓派">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231214907.png">
+
+<link rel="canonical" href="https://www.425234.xyz/2020/12/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%884%EF%BC%89OMV-NAS%E8%AE%BE%E7%BD%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>树莓派的100种玩法（4）OMV-NAS设置 | 自留地</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">自留地</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">分享自己的技能</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.425234.xyz/2020/12/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%884%EF%BC%89OMV-NAS%E8%AE%BE%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhenyu Xing">
+      <meta itemprop="description" content="个人博客，软路由，NAS，Linux">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自留地">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          树莓派的100种玩法（4）OMV-NAS设置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-31 14:13:13" itemprop="dateCreated datePublished" datetime="2020-12-31T14:13:13+08:00">2020-12-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-01 14:51:24" itemprop="dateModified" datetime="2021-01-01T14:51:24+08:00">2021-01-01</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%884%EF%BC%89OMV-NAS%E8%AE%BE%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/31/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%884%EF%BC%89OMV-NAS%E8%AE%BE%E7%BD%AE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在正式开始之前，先说一个小事，我通过兴趣领域认证了，对我算是一个小小的肯定。好了，下面看正文</p>
+<h3 id="遇到一个小问题"><a href="#遇到一个小问题" class="headerlink" title="遇到一个小问题"></a>遇到一个小问题</h3><p>今天下班回家准备更新下一篇的，不过我这没有网，不过我上次用手机开热点无线连接过想着肯定没啥问题，结果到家就打脸了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231214907.png"></p>
+<p>还以为是环境变量设置问题使用如下命令查看</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/profile   </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231215449.png"></p>
+<p>赶紧查下命令位置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231223031.png"></p>
+<p>赶紧搜下，据说是上面的脚本里删除了dhcp5和networkmanager，我赶紧去看了下，确实有</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231225407.png"></p>
+<p>这里我就直接照抄解决方式了，这里<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Bt4y1a71z">抄的</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y dhcpcd5 network-manager</span><br><span class="line">sudo systemctl enable dhcpcd</span><br><span class="line">sudo systemctl start dhcpcd</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+
+<p>上面命令的意思就是在重新装上以上两个服务并且添加到开机启动项</p>
+<h4 id="另一种解决方式"><a href="#另一种解决方式" class="headerlink" title="另一种解决方式"></a>另一种解决方式</h4><p>既然找到解决方法了，我就再找一种。因为我正在写的这篇东西用的是笔记本，而我的笔记本也是通过手机热点联网的，而我的笔记本还有一个网口，那么下边这种解决方式就来了：</p>
+<p>通过桥接的方式解决，具体操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20201231231942.png"></p>
+<p>IP地址通过显示器查看是192.168.188.113</p>
+<h3 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h3><p>其实前面那部分可以掠过，只是说下我遇到的问题，下面正式开始</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101001350.png"></p>
+<p>建议更改下默认密码</p>
+<p>这里插一句：每次更改设置后需要根据页面上的提示点击”应用“</p>
+<p>然后需要在”更新管理“选项检查下更新，选择更新后点击升级下软件包</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101002551.png"></p>
+<p>等待更新完成</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101003800.png"></p>
+<p>如果遇到更新失败可以少选几个再更新</p>
+<p>更新完成后选择OMV-Extras选项，点开这个，安装docker和Portainer</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101011355.png"></p>
+<p>安装完成后打开portainer，关于portainer的具体设置可以看我另外一篇<a href="https://www.425234.xyz/2020/12/09/OMV5%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE%EF%BC%882%EF%BC%89Portainer%E8%AE%BE%E7%BD%AE/">文章</a></p>
+<p>这里只放一个</p>
+<ul>
+<li>阿里云加速获取<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-shanghai/instances/mirrors">地址</a></li>
+</ul>
+<p>树莓派通过USB3.0连接硬盘，之后开始设置共享文件夹</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101014250.jpg"></p>
+<p>左侧选择”文件系统“—-”创建“—-设备选择需要格式化的硬盘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101042825.png"></p>
+<p>看好硬盘，别选错了</p>
+<p>接着选择”共享文件夹“—–”添加”，如下图所示创建共享文件夹，设备选择刚刚创建的硬盘</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101043801.png"></p>
+<p>查看用户权限，是否勾选ssh，我这里直接用的pi账户，默认已经勾选</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101044649.png"></p>
+<p>再点击”特权“，为用户分配刚刚创建的共享文件夹的权限</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101045216.png"></p>
+<p>这里主要的设置就结束了</p>
+<h3 id="不是为了凑字数的凑字数"><a href="#不是为了凑字数的凑字数" class="headerlink" title="不是为了凑字数的凑字数"></a>不是为了凑字数的凑字数</h3><p>这里说一个小技巧，这个目录在使用docker时可以参考UNRAID的形式做成这种目录结构，也是对后续更新内容的一个预告吧</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210101142540.png"></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>如果对您有帮助，可以考虑支持下作者</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Zhenyu Xing 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Zhenyu Xing 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NAS/" rel="tag"># NAS</a>
+              <a href="/tags/OMV/" rel="tag"># OMV</a>
+              <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" rel="tag"># 树莓派</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/27/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%883%EF%BC%89OMV-NAS%E5%AE%89%E8%A3%85/" rel="prev" title="树莓派的100种玩法（3）OMV--NAS安装">
+      <i class="fa fa-chevron-left"></i> 树莓派的100种玩法（3）OMV--NAS安装
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%885%EF%BC%89OMV-%E5%B8%B8%E8%A7%81docker%E9%95%9C%E5%83%8F%E9%83%A8%E7%BD%B2/" rel="next" title="树莓派的100种玩法（5）OMV-常见docker镜像部署">
+      树莓派的100种玩法（5）OMV-常见docker镜像部署 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E4%B8%80%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">遇到一个小问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%A6%E4%B8%80%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">另一种解决方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%BC%8F%E5%BC%80%E5%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">正式开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E6%98%AF%E4%B8%BA%E4%BA%86%E5%87%91%E5%AD%97%E6%95%B0%E7%9A%84%E5%87%91%E5%AD%97%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">不是为了凑字数的凑字数</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhenyu Xing</p>
+  <div class="site-description" itemprop="description">个人博客，软路由，NAS，Linux</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:xingzhenyu703@gmail.com" title="E-Mail → mailto:xingzhenyu703@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/1640727055" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;1640727055" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/07110304" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;07110304" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhenyu Xing</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '0co6fhuWMGg5CJ9yMY2PojNP-gzGzoHsz',
+      appKey     : '9qkwg5WKahMImRoJjTxHRzLE',
+      placeholder: "各位同志，请理智评论",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

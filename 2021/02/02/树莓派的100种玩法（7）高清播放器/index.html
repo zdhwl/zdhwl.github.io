@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.425234.xyz","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="写在开头我都有点懒得写开场白了。下载系统，刷到卡里。系统是LibreELEC，这个是官方网站 https:&#x2F;&#x2F;libreelec.tv&#x2F; 因为我用的树莓派4，所以下载的版本就是树莓派4版本  下载好了还是用Etcher烧录，之前已经放过连接了，这里就不放了。有问题可以看我之前的文章，另外我对这个系统了解也不多，之前只用过XBMC所以有些东西可能不太了解，如果有大佬在看，请轻喷。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派的100种玩法（7）多媒体娱乐中心">
+<meta property="og:url" content="https://www.425234.xyz/2021/02/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%887%EF%BC%89%E9%AB%98%E6%B8%85%E6%92%AD%E6%94%BE%E5%99%A8/index.html">
+<meta property="og:site_name" content="自留地">
+<meta property="og:description" content="写在开头我都有点懒得写开场白了。下载系统，刷到卡里。系统是LibreELEC，这个是官方网站 https:&#x2F;&#x2F;libreelec.tv&#x2F; 因为我用的树莓派4，所以下载的版本就是树莓派4版本  下载好了还是用Etcher烧录，之前已经放过连接了，这里就不放了。有问题可以看我之前的文章，另外我对这个系统了解也不多，之前只用过XBMC所以有些东西可能不太了解，如果有大佬在看，请轻喷。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210202233600.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210205205417.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210205212209.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210205214632.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210205220213.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210205231608.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206002507.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206003221.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206005241.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206013349.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206014655.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206024106.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206100244.png">
+<meta property="article:published_time" content="2021-02-02T14:00:37.000Z">
+<meta property="article:modified_time" content="2021-02-06T03:43:59.873Z">
+<meta property="article:author" content="Zhenyu Xing">
+<meta property="article:tag" content="树莓派">
+<meta property="article:tag" content="ELEC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210202233600.png">
+
+<link rel="canonical" href="https://www.425234.xyz/2021/02/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%887%EF%BC%89%E9%AB%98%E6%B8%85%E6%92%AD%E6%94%BE%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>树莓派的100种玩法（7）多媒体娱乐中心 | 自留地</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">自留地</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">分享自己的技能</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.425234.xyz/2021/02/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%887%EF%BC%89%E9%AB%98%E6%B8%85%E6%92%AD%E6%94%BE%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhenyu Xing">
+      <meta itemprop="description" content="个人博客，软路由，NAS，Linux">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自留地">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          树莓派的100种玩法（7）多媒体娱乐中心
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-02 22:00:37" itemprop="dateCreated datePublished" datetime="2021-02-02T22:00:37+08:00">2021-02-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-06 11:43:59" itemprop="dateModified" datetime="2021-02-06T11:43:59+08:00">2021-02-06</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/02/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%887%EF%BC%89%E9%AB%98%E6%B8%85%E6%92%AD%E6%94%BE%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/02/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84100%E7%A7%8D%E7%8E%A9%E6%B3%95%EF%BC%887%EF%BC%89%E9%AB%98%E6%B8%85%E6%92%AD%E6%94%BE%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h3><p>我都有点懒得写开场白了。下载系统，刷到卡里。系统是LibreELEC，这个是官方网站 <a target="_blank" rel="noopener" href="https://libreelec.tv/">https://libreelec.tv/</a> 因为我用的树莓派4，所以下载的版本就是树莓派4版本</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210202233600.png"></p>
+<p>下载好了还是用Etcher烧录，之前已经放过连接了，这里就不放了。有问题可以看我之前的文章，另外我对这个系统了解也不多，之前只用过XBMC所以有些东西可能不太了解，如果有大佬在看，请轻喷。</p>
+<h3 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h3><p>正常通过软件刷入后进入启动界面，我这里刷入时启动没联网，所以启动设置全部默认没有改，这里就不放启动时的页面了，直接进入设置好的英文界面</p>
+<ul>
+<li><p>连接网络</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210205205417.png"></p>
+</li>
+<li><p>设置中文</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210205212209.png"></p>
+<p>点击后会自动下载中文语言包，完成后会自动切换成中文，还有上面没标出的时区，根据自己需要更改，否则时间不对。</p>
+<p>这里再多说一句，如果遇到选择语言界面只有英语时，可通过选择 如下菜单顺序安装，这里就不放图了，太长</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System----Add-ons----All repositories----Look and fell----Languages----Chinese </span><br></pre></td></tr></table></figure></li>
+<li><p>投屏设置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210205214632.png"></p>
+<p>这里用手机试下，成功</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210205220213.jpg"></p>
+</li>
+</ul>
+<h3 id="看电视"><a href="#看电视" class="headerlink" title="看电视"></a>看电视</h3><ul>
+<li><p>安装PVR插件</p>
+<p>在插件界面搜索PVR，选择PVR IPTV Simple Client 安装，具体操作如图<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210205231608.png"></p>
+</li>
+<li><p>开启SMB服务</p>
+<p>这里需要网上找一个直播源，这里用的扩展名为m3u8的播放列表，我这里随便找了一个，只为了测试用，具体使用方式如下<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206002507.png"></p>
+</li>
+<li><p>使设置生效</p>
+<p>设置完成后重启设备，就可以看电视了<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206003221.png"></p>
+</li>
+</ul>
+<h3 id="影视资源库"><a href="#影视资源库" class="headerlink" title="影视资源库"></a>影视资源库</h3><p>这部分我就不多写了，主要功能就是通过内置的刮削器获取电影或剧集的封面以及评分等信息，这里内置的是TMDB的插件，这里只是介绍下遇到的问题，以及解决方法</p>
+<p>问题</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206005241.png"></p>
+<p>解决方法</p>
+<p>将解析地址 api.themoviedb.org 改为 api.tmdb.org</p>
+<p>具体位置在/storage/.kodi/addons下的三个目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">metadata.tvshows.themoviedb.org</span><br><span class="line">metadata.themoviedb.org</span><br><span class="line">metadata.common.themoviedb.org</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206013349.png"></p>
+<p>之后就可以识别了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206014655.jpg"></p>
+<h3 id="下载机"><a href="#下载机" class="headerlink" title="下载机"></a>下载机</h3><p>这里是通过安装Docker插件部署几个常见的下载程序的镜像，因为前几个教程写过相关的部署教程这里就不详细地写了，感兴趣的可以看我之前的文章，这里就只放个安装Docker的截图吧</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206024106.png"></p>
+<p>这里还是啰嗦下，安装好docker后可以通过ssh登陆后台安装所需镜像，或者通过安装portainer管理镜像，ssh默认账号是root 密码是你自己设置的</p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>这个系统应该也是支持游戏的，这里因为之前写过专用游戏系统，这里就不详细描述了。大概的玩法就这些，另外还有些类似podcast<img src="https://cdn.jsdelivr.net/gh/zdhwl/hexopicture/HEXO-PIC/20210206100244.png"></p>
+<p>广播之类的都可以加入到kodi中，这东西可玩性还挺高的，这边细节描述可能不够全面，因为篇（其）幅（实）所（是）限（懒）。</p>
+<p>另外大家有什么问题，可以在评论区留言，如果问题够多，我会考虑再出再出一篇关于解决各种问题的文章。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>如果对您有帮助，可以考虑支持下作者</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Zhenyu Xing 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="Zhenyu Xing 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" rel="tag"># 树莓派</a>
+              <a href="/tags/ELEC/" rel="tag"># ELEC</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/25/%E7%94%B1%E4%B8%80%E4%BB%BD%E4%BD%93%E6%84%9F%E6%B8%B8%E6%88%8F%E5%BC%95%E5%8F%91%E7%9A%84%E5%89%81%E6%89%8B%E4%B9%8B%E6%97%85/" rel="prev" title="由一份体感游戏引发的剁手之旅">
+      <i class="fa fa-chevron-left"></i> 由一份体感游戏引发的剁手之旅
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/19/PocketLCD%E5%BC%80%E7%AE%B1/" rel="next" title="PocketLCD开箱">
+      PocketLCD开箱 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E5%BC%80%E5%A4%B4"><span class="nav-number">1.</span> <span class="nav-text">写在开头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">基本设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%8B%E7%94%B5%E8%A7%86"><span class="nav-number">3.</span> <span class="nav-text">看电视</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%B1%E8%A7%86%E8%B5%84%E6%BA%90%E5%BA%93"><span class="nav-number">4.</span> <span class="nav-text">影视资源库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%9C%BA"><span class="nav-number">5.</span> <span class="nav-text">下载机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83"><span class="nav-number">6.</span> <span class="nav-text">其它</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhenyu Xing</p>
+  <div class="site-description" itemprop="description">个人博客，软路由，NAS，Linux</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:xingzhenyu703@gmail.com" title="E-Mail → mailto:xingzhenyu703@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/1640727055" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;1640727055" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/07110304" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;07110304" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhenyu Xing</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '0co6fhuWMGg5CJ9yMY2PojNP-gzGzoHsz',
+      appKey     : '9qkwg5WKahMImRoJjTxHRzLE',
+      placeholder: "各位同志，请理智评论",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
